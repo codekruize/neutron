@@ -7,15 +7,19 @@ allprojects {
     group = 'org.neutron'
     version = '1.0.0'
     
+    // Add Java version consistency across all projects
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+    
     repositories {
         mavenCentral()
-        maven { url 'https://repo1.maven.org/maven2/' }
     }
 }
 
 subprojects {
     apply plugin: 'java-library'
     
+    // These are now inherited from allprojects, but keeping for clarity
     sourceCompatibility = 1.8
     targetCompatibility = 1.8
     
@@ -27,7 +31,6 @@ subprojects {
 // Main application configuration
 application {
     mainClass = 'org.neutron.app.Main'
-    applicationDefaultJvmArgs = ['-Djava.awt.headless=false']
 }
 
 // Dependencies for the main application
@@ -58,6 +61,11 @@ jar {
     
     manifest {
         attributes 'Main-Class': 'org.neutron.app.Main'
+        attributes 'Implementation-Title': 'Neutron Java ME Emulator'
+        attributes 'Implementation-Version': version
+        attributes 'Implementation-Vendor': 'Neutron Team'
+        attributes 'Built-By': System.getProperty('user.name')
+        attributes 'Built-Date': new Date()
     }
     
     // Include all classes from subprojects
@@ -82,6 +90,12 @@ jar {
     exclude 'module-info.class'
     
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+// Enhanced clean task
+clean {
+    delete file('build/libs')
+    delete file('build/resources')
 }
 
 // Task to run the application
