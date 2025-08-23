@@ -1,0 +1,6 @@
+rootProject.name = 'neutron'
+
+include 'neutron-cldc'
+include 'neutron-javase'
+include 'neutron-javase-swing'
+include 'neutron-midp'

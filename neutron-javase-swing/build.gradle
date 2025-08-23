@@ -1,0 +1,59 @@
+apply plugin: 'java-library'
+apply plugin: 'application'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    api project(':neutron-javase')
+}
+
+mainClassName = 'org.neutron.app.Main'
+
+jar {
+    dependsOn ':neutron-javase:jar', ':neutron-midp:jar', ':neutron-cldc:jar'
+    manifest {
+        attributes 'Main-Class': 'org.neutron.app.Main'
+    }
+    
+    // Include only the swing-specific classes plus essential dependencies
+    from sourceSets.main.output
+    
+    // Include essential classes from javase module
+    from {
+        project(':neutron-javase').sourceSets.main.output
+    }
+    
+    // Include essential classes from midp module (contains Device interface)
+    from {
+        project(':neutron-midp').sourceSets.main.output
+    }
+    
+    // Include essential classes from cldc module
+    from {
+        project(':neutron-cldc').sourceSets.main.output
+    }
+    
+    // Exclude unnecessary files to reduce size
+    exclude 'META-INF/**'
+    exclude '**/*.txt'
+    exclude '**/*.xml'
+    exclude '**/*.properties'
+    exclude '**/*.gif'
+    exclude '**/*.png'
+    exclude '**/*.jpg'
+    
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+// Create a minimal JAR with only essential classes
+task createMinimalJar(type: Jar, dependsOn: classes) {
+    archiveClassifier = 'minimal'
+    manifest {
+        attributes 'Main-Class': 'org.neutron.app.Main'
+    }
+    
+    // Only include swing-specific classes, not all dependencies
+    from sourceSets.main.output
+    exclude 'META-INF/**'
+}

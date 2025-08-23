@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/neutron" />
+            <option value="$PROJECT_DIR$/neutron/api" />
+            <option value="$PROJECT_DIR$/neutron/api/cldcapi10" />
+            <option value="$PROJECT_DIR$/neutron/api/cldcapi11" />
+            <option value="$PROJECT_DIR$/neutron/api/midpapi20" />
+            <option value="$PROJECT_DIR$/neutron/microemu-android" />
+            <option value="$PROJECT_DIR$/neutron/microemu-cldc" />
+            <option value="$PROJECT_DIR$/neutron/microemu-examples" />
+            <option value="$PROJECT_DIR$/neutron/microemu-examples/microemu-demo" />
+            <option value="$PROJECT_DIR$/neutron/microemu-examples/microemu-fcview" />
+            <option value="$PROJECT_DIR$/neutron/microemu-extensions" />
+            <option value="$PROJECT_DIR$/neutron/microemu-extensions/microemu-device-large" />
+            <option value="$PROJECT_DIR$/neutron/microemu-extensions/microemu-device-minimum" />
+            <option value="$PROJECT_DIR$/neutron/microemu-extensions/microemu-device-resizable" />
+            <option value="$PROJECT_DIR$/neutron/microemu-extensions/microemu-jsr-120" />
+            <option value="$PROJECT_DIR$/neutron/microemu-extensions/microemu-jsr-135" />
+            <option value="$PROJECT_DIR$/neutron/microemu-extensions/microemu-jsr-75" />
+            <option value="$PROJECT_DIR$/neutron/microemu-extensions/microemu-jsr-82" />
+            <option value="$PROJECT_DIR$/neutron/microemu-extensions/microemu-nokiaui" />
+            <option value="$PROJECT_DIR$/neutron/microemu-extensions/microemu-siemensapi" />
+            <option value="$PROJECT_DIR$/neutron/microemu-extensions/microemu-site-skin" />
+            <option value="$PROJECT_DIR$/neutron/microemu-injected" />
+            <option value="$PROJECT_DIR$/neutron/microemu-javase" />
+            <option value="$PROJECT_DIR$/neutron/microemu-javase-applet" />
+            <option value="$PROJECT_DIR$/neutron/microemu-javase-swing" />
+            <option value="$PROJECT_DIR$/neutron/microemu-midp" />
+            <option value="$PROJECT_DIR$/neutron/microemu-tests" />
+            <option value="$PROJECT_DIR$/neutron/microemu-tests/bytecode-test-app" />
+            <option value="$PROJECT_DIR$/neutron/microemu-tests/microemu-test-avetana" />
+            <option value="$PROJECT_DIR$/neutron/microemu-tests/microemu-test-bluecove" />
+            <option value="$PROJECT_DIR$/neutron/microemu-webstart" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>
