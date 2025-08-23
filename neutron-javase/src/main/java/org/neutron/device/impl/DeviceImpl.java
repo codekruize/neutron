@@ -1,27 +1,3 @@
-/**
- *  Neutron
- *  Copyright (C) 2002-2005 Bartek Teodorczyk <barteo@barteo.net>
- *
- *  It is licensed under the following two licenses as alternatives:
- *    1. GNU Lesser General Public License (the "LGPL") version 2.1 or any newer version
- *    2. Apache License (the "AL") Version 2.0
- *
- *  You may not use this file except in compliance with at least one of
- *  the above two licenses.
- *
- *  You may obtain a copy of the LGPL at
- *      http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt
- *
- *  You may obtain a copy of the AL at
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the LGPL or the AL for the specific language governing permissions and
- *  limitations.
- */
-
 package org.neutron.device.impl;
 
 import java.io.File;
@@ -79,11 +55,7 @@ public abstract class DeviceImpl implements Device {
 	public static final String DEFAULT_LOCATION = "org/neutron/device/default/device.xml";
 	
 	public static final String RESIZABLE_LOCATION = "org/neutron/device/resizable/device.xml";
-
-	/**
-	 * @deprecated
-	 */
-	private String descriptorLocation;
+private String descriptorLocation;
 
 	private static Map specialInheritanceAttributeSet;
 
@@ -131,29 +103,13 @@ public abstract class DeviceImpl implements Device {
 
 		return device;
 	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.neutron.device.DeviceA#init()
-	 */
-	public void init() {
+public void init() {
 
 	}
-
-	/**
-	 * @deprecated use Device.create(EmulatorContext context, ClassLoader
-	 *             classLoader, String descriptorLocation);
-	 */
-	public void init(EmulatorContext context) {
+public void init(EmulatorContext context) {
 		init(context, DEFAULT_LOCATION);
 	}
-
-	/**
-	 * @deprecated use Device.create(EmulatorContext context, ClassLoader
-	 *             classLoader, String descriptorLocation);
-	 */
-	public void init(EmulatorContext context, String descriptorLocation) {
+public void init(EmulatorContext context, String descriptorLocation) {
 		this.context = context;
 		if (descriptorLocation.startsWith("/")) {
 			this.descriptorLocation = descriptorLocation.substring(1);
@@ -169,104 +125,40 @@ public abstract class DeviceImpl implements Device {
 			System.out.println("Cannot load config: " + ex);
 		}
 	}
-
-	/**
-	 * @deprecated
-	 */
-	public String getDescriptorLocation() {
+public String getDescriptorLocation() {
 		return descriptorLocation;
 	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.neutron.device.DeviceA#destroy()
-	 */
-	public void destroy() {
+public void destroy() {
 	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.neutron.device.DeviceA#getName()
-	 */
-	public String getName() {
+public String getName() {
 		return name;
 	}
 
 	public static EmulatorContext getEmulatorContext() {
 		return context;
 	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.neutron.device.DeviceA#getInputMethod()
-	 */
-	public InputMethod getInputMethod() {
+public InputMethod getInputMethod() {
 		return context.getDeviceInputMethod();
 	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.neutron.device.DeviceA#getFontManager()
-	 */
-	public FontManager getFontManager() {
+public FontManager getFontManager() {
 		return context.getDeviceFontManager();
 	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.neutron.device.DeviceA#getDeviceDisplay()
-	 */
-	public DeviceDisplay getDeviceDisplay() {
+public DeviceDisplay getDeviceDisplay() {
 		return context.getDeviceDisplay();
 	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.neutron.device.DeviceA#getNormalImage()
-	 */
-	public Image getNormalImage() {
+public Image getNormalImage() {
 		return normalImage;
 	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.neutron.device.DeviceA#getOverImage()
-	 */
-	public Image getOverImage() {
+public Image getOverImage() {
 		return overImage;
 	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.neutron.device.DeviceA#getPressedImage()
-	 */
-	public Image getPressedImage() {
+public Image getPressedImage() {
 		return pressedImage;
 	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.neutron.device.DeviceA#getSoftButtons()
-	 */
-	public Vector getSoftButtons() {
+public Vector getSoftButtons() {
 		return softButtons;
 	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.neutron.device.DeviceA#getButtons()
-	 */
-	public Vector getButtons() {
+public Vector getButtons() {
 		return buttons;
 	}
 
@@ -285,13 +177,7 @@ public abstract class DeviceImpl implements Device {
 		hasRepeatEvents = false;
 
 		((FontManagerImpl) getFontManager()).setAntialiasing(false);
-
-		/*
-		 * parseDisplay have to be performed first to check if device display
-		 * has resizable flag set, parseInput skips rectangle or polygon element
-		 * then, also normalImage, overImage and pressedImage aren't needed
-		 */
-		parseDisplay(classLoader, base, doc.getChild("display"));
+parseDisplay(classLoader, base, doc.getChild("display"));
 
 		for (Enumeration e = doc.enumerateChildren(); e.hasMoreElements();) {
 			XMLElement tmp = (XMLElement) e.nextElement();
@@ -642,49 +528,19 @@ public abstract class DeviceImpl implements Device {
 			return false;
 		}
 	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.neutron.device.DeviceA#hasPointerEvents()
-	 */
-	public boolean hasPointerEvents() {
+public boolean hasPointerEvents() {
 		return hasPointerEvents;
 	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.neutron.device.DeviceA#hasPointerMotionEvents()
-	 */
-	public boolean hasPointerMotionEvents() {
+public boolean hasPointerMotionEvents() {
 		return hasPointerMotionEvents;
 	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.neutron.device.DeviceA#hasRepeatEvents()
-	 */
-	public boolean hasRepeatEvents() {
+public boolean hasRepeatEvents() {
 		return hasRepeatEvents;
 	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.neutron.device.DeviceA#hasRepeatEvents()
-	 */
-	public boolean vibrate(int duration) {
+public boolean vibrate(int duration) {
 		return false;
 	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.neutron.device.DeviceA#getSystemProperties()
-	 */
-	public Map getSystemProperties() {
+public Map getSystemProperties() {
 		return this.systemProperties;
 	}
 
@@ -729,11 +585,7 @@ public abstract class DeviceImpl implements Device {
 			specialInheritanceAttributeSet.put("//FONTS/FONT", new String[] { "face", "style", "size" });
 		}
 	}
-
-	/**
-	 * Very simple xml inheritance for devices.
-	 */
-	static XMLElement inheritXML(XMLElement parent, XMLElement child, String parentName) {
+static XMLElement inheritXML(XMLElement parent, XMLElement child, String parentName) {
 		inheritanceConstInit();
 		if (parent == null) {
 			return child;

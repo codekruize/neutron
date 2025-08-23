@@ -1,33 +1,7 @@
-/*
- *  Neutron
- *  Copyright (C) 2005 Andres Navarro
- *
- *  This library is free software; you can redistribute it and/or
- *  modify it under the terms of the GNU Lesser General Public
- *  License as published by the Free Software Foundation; either
- *  version 2.1 of the License, or (at your option) any later version.
- *
- *  This library is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- *  Lesser General Public License for more details.
- *
- *  You should have received a copy of the GNU Lesser General Public
- *  License along with this library; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
- */
-
 package javax.microedition.lcdui.game;
 
 import javax.microedition.lcdui.Graphics;
 import javax.microedition.lcdui.Image;
-
-/**
- *
- * @author Andres Navarro
- */
-
-
 // Synchronization is important because of two things:
 // first setStaticTileSet can change the whole Object
 // so any function could be running at the same time as a setStaticTileSet
@@ -232,24 +206,7 @@ public class TiledLayer extends Layer {
 	        
 	        // take out the columns and rows that are outside of
 	        // the clip area, this should speed things up a bit
-/*	        
-	        int diff = cX - x;
-	        if (diff > 0)
-	            c0 += diff / tW;
-	        
-	        diff = cX + cW - (x + cMax*tW);
-	        if (diff > 0)
-	            cMax -= diff / tW;
-	
-	        diff = cY - y;
-	        if (diff > 0)
-	            r0 += diff / tH;
-	        
-	        diff = cY + cH - (x + rMax*tH);
-	        if (diff > 0)
-	            rMax -= diff / tH;
-*/	        
-	        int x0 = x;
+int x0 = x;
 	        int anchor = Graphics.LEFT | Graphics.TOP;
 	        
 	        int imgCols = img.getWidth() / tW;

@@ -1,8 +1,3 @@
-/**
- *  Neutron
- *
- *  @version $Id$
- */
 package com.sun.cdc.io;
 
 import javax.microedition.io.Connection;

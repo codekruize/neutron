@@ -1,29 +1,3 @@
-/*
- * Neutron
- * Copyright (C) 2001 Bartek Teodorczyk <barteo@barteo.net>
- * 
- *  It is licensed under the following two licenses as alternatives:
- *    1. GNU Lesser General Public License (the "LGPL") version 2.1 or any newer version
- *    2. Apache License (the "AL") Version 2.0
- *
- *  You may not use this file except in compliance with at least one of
- *  the above two licenses.
- *
- *  You may obtain a copy of the LGPL at
- *      http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt
- *
- *  You may obtain a copy of the AL at
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the LGPL or the AL for the specific language governing permissions and
- *  limitations.
- * 
- * @version $Id$
- */
-
 package org.neutron.device.j2se;
 
 import java.awt.event.KeyEvent;
@@ -95,14 +69,7 @@ public class J2SEInputMethod extends InputMethodImpl {
 		// if (DeviceFactory.getDevice().hasRepeatEvents()) {
 		keyReleasedDelayTimer = ThreadUtils.createTimer("InputKeyReleasedDelayTimer");
 	}
-
-	/**
-	 * Gets the game action associated with the given key code of the device.
-	 * 
-	 * @return the game action corresponding to this key, or <code>0</code> if
-	 *         none
-	 */
-	public int getGameAction(int keyCode) {
+public int getGameAction(int keyCode) {
 		for (Iterator it = DeviceFactory.getDevice().getButtons().iterator(); it.hasNext();) {
 			J2SEButton button = (J2SEButton) it.next();
 			if (button.getKeyCode() == keyCode) {
@@ -111,25 +78,11 @@ public class J2SEInputMethod extends InputMethodImpl {
 		}
 		return 0;
 	}
-
-	/**
-	 * 
-	 * 
-	 * @return a key code corresponding to this game action
-	 * @throws IllegalArgumentException
-	 *             if <code>gameAction</code> is not a valid game action
-	 */
-	public int getKeyCode(int gameAction) {
+public int getKeyCode(int gameAction) {
 		ButtonName name = ButtonDetaultDeviceKeyCodes.getButtonNameByGameAction(gameAction);
 		return J2SEDeviceButtonsHelper.getButton(name).getKeyCode();
 	}
-
-	/**
-	 * @return a string name for the key
-	 * @throws IllegalArgumentException
-	 *             if <code>keyCode</code> is not a valid key code
-	 */
-	public String getKeyName(int keyCode) throws IllegalArgumentException {
+public String getKeyName(int keyCode) throws IllegalArgumentException {
 		for (Iterator it = DeviceFactory.getDevice().getButtons().iterator(); it.hasNext();) {
 			J2SEButton button = (J2SEButton) it.next();
 			if (button.getKeyCode() == keyCode) {

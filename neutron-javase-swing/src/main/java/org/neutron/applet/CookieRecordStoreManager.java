@@ -1,27 +1,3 @@
-/*
- *  Neutron
- *  Copyright (C) 2001-2006 Bartek Teodorczyk <barteo@barteo.net>
- *
- *  It is licensed under the following two licenses as alternatives:
- *    1. GNU Lesser General Public License (the "LGPL") version 2.1 or any newer version
- *    2. Apache License (the "AL") Version 2.0
- *
- *  You may not use this file except in compliance with at least one of
- *  the above two licenses.
- *
- *  You may obtain a copy of the LGPL at
- *      http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt
- *
- *  You may obtain a copy of the AL at
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the LGPL or the AL for the specific language governing permissions and
- *  limitations.
- */
-
 package org.neutron.applet;
 
 import java.applet.Applet;
@@ -112,41 +88,7 @@ public class CookieRecordStoreManager implements RecordStoreManager {
 	}
 
 	public void init() {
-/*		JSObject window = (JSObject) JSObject.getWindow(applet);
-		document = (JSObject) window.getMember("document");
-		cookies = new HashMap();
-
-		String load = (String) document.getMember("cookie");
-		if (load != null) {
-			StringTokenizer st = new StringTokenizer(load, ";");
-			while (st.hasMoreTokens()) {
-				String token = st.nextToken().trim();
-				int index = token.indexOf("=");
-				if (index != -1) {
-					if (token.charAt(index + 1) == 'a') {
-						String first = token.substring(0, 1);
-						String name = token.substring(1, index).trim();
-						CookieContent content = (CookieContent) cookies.get(name);
-						if (content == null) {
-							content = new CookieContent();
-							cookies.put(name, content);
-						}
-						if (first.equals("x")) {
-							content.setPart(0, token.substring(index + 2));
-						} else {
-							try {
-								content.setPart(Integer.parseInt(first), token.substring(index + 2));
-							} catch (NumberFormatException ex) {
-							}
-						}
-						System.out.println("init: " + token.substring(0, index) + "(" + token.substring(index + 2)
-								+ ")");
-					}
-				}
-			}
-		}
-		System.out.println("init: " + cookies.size());*/
-	}
+}
 
 	public String[] listRecordStores() {
 		System.out.println("listRecordStores:");
@@ -207,38 +149,7 @@ public class CookieRecordStoreManager implements RecordStoreManager {
 	}
 
 	public void saveRecord(RecordStoreImpl recordStoreImpl, int recordId) throws RecordStoreException {
-/*		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		DataOutputStream dos = new DataOutputStream(baos);
-		try {
-			recordStoreImpl.writeHeader(dos);
-			RecordEnumeration re = recordStoreImpl.enumerateRecords(null, null, false);
-			while (re.hasNextElement()) {
-				recordStoreImpl.writeRecord(dos, re.nextRecordId());
-			}
-			CookieContent cookieContent = new CookieContent(Base64Coder.encode(baos.toByteArray()));
-
-			CookieContent previousCookie = (CookieContent) cookies.get(recordStoreImpl.getName());
-			if (previousCookie != null) {
-				removeCookie(recordStoreImpl.getName(), previousCookie);
-			}
-
-			cookies.put(recordStoreImpl.getName(), cookieContent);
-
-			String[] parts = cookieContent.getParts();
-			if (parts.length == 1) {
-				document.setMember("cookie", "x" + recordStoreImpl.getName() + "=a" + parts[0] + expires);
-			} else {
-				for (int i = 0; i < parts.length; i++) {
-					document.setMember("cookie", i + recordStoreImpl.getName() + "=a" + parts[i] + expires);
-				}
-			}
-
-			System.out.println("saveChanges: " + recordStoreImpl.getName() + " (" + cookieContent.getParts().length
-					+ ")");
-		} catch (IOException ex) {
-			Logger.error(ex);
-		}*/
-	}
+}
 
 	public int getSizeAvailable(RecordStoreImpl recordStoreImpl) {
 		int size = MAX_COOKIE_SIZE * MAX_SPLIT_COOKIES;
@@ -259,16 +170,7 @@ public class CookieRecordStoreManager implements RecordStoreManager {
 	}
 
 	private void removeCookie(String recordStoreName, CookieContent cookieContent) {
-/*		String[] parts = cookieContent.getParts();
-		if (parts.length == 1) {
-			document.setMember("cookie", "x" + recordStoreName + "=r");
-		} else {
-			for (int i = 0; i < parts.length; i++) {
-				document.setMember("cookie", i + recordStoreName + "=r");
-			}
-		}
-		System.out.println("removeCookie: " + recordStoreName);*/
-	}
+}
 
 	private class CookieContent {
 		private String[] parts;

@@ -1,29 +1,3 @@
-/**
- *  Neutron
- *  Copyright (C) 2006-2007 Bartek Teodorczyk <barteo@barteo.net>
- *  Copyright (C) 2006-2007 Vlad Skarzhevskyy
- *
- *  It is licensed under the following two licenses as alternatives:
- *    1. GNU Lesser General Public License (the "LGPL") version 2.1 or any newer version
- *    2. Apache License (the "AL") Version 2.0
- *
- *  You may not use this file except in compliance with at least one of
- *  the above two licenses.
- *
- *  You may obtain a copy of the LGPL at
- *      http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt
- *
- *  You may obtain a copy of the AL at
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the LGPL or the AL for the specific language governing permissions and
- *  limitations.
- *
- *  @version $Id$
- */
 package org.neutron.app.classloader;
 
 import java.io.File;
@@ -43,15 +17,6 @@ import java.util.StringTokenizer;
 
 import org.neutron.app.util.IOUtils;
 import org.neutron.log.Logger;
-
-/**
- * Main features of this class loader Security aware - enables load and run app in Webstart. Proper class loading order.
- * MIDlet classes loaded first then system and Neutron classes Proper resource loading order. MIDlet resources
- * only can be loaded. MIDlet Bytecode preprocessing/instrumentation
- * 
- * @author vlads
- * 
- */
 public class MIDletClassLoader extends URLClassLoader {
 
 	// TODO make this configurable
@@ -73,9 +38,7 @@ public class MIDletClassLoader extends URLClassLoader {
 	private InstrumentationConfig config;
 
 	private Set noPreporcessingNames;
-
-	/* The context to be used when loading classes and resources */
-	private AccessControlContext acc;
+private AccessControlContext acc;
 
 	private static class LoadClassByParentException extends ClassNotFoundException {
 
@@ -116,14 +79,7 @@ public class MIDletClassLoader extends URLClassLoader {
 		this.delegatingToParent = (delegationType == MIDletClassLoaderConfig.DELEGATION_DELEGATING);
 		this.findPathInParent = (delegationType == MIDletClassLoaderConfig.DELEGATION_RELAXED);
 	}
-
-	/**
-	 * Appends the Class Location URL to the list of URLs to search for classes and resources.
-	 * 
-	 * @param Class
-	 *            Name
-	 */
-	public void addClassURL(String className) throws MalformedURLException {
+public void addClassURL(String className) throws MalformedURLException {
 		String resource = getClassResourceName(className);
 		URL url = getParent().getResource(resource);
 		if (url == null) {
@@ -155,42 +111,7 @@ public class MIDletClassLoader extends URLClassLoader {
 		}
 		super.addURL(url);
 	}
-
-	/**
-	 * Loads the class with the specified <a href="#name">binary name</a>.
-	 * 
-	 * <p>
-	 * Search order is reverse to standard implemenation
-	 * </p>
-	 * 
-	 * This implementation of this method searches for classes in the following order:
-	 * 
-	 * <p>
-	 * <ol>
-	 * 
-	 * <li>
-	 * <p>
-	 * Invoke {@link #findLoadedClass(String)} to check if the class has already been loaded.
-	 * </p>
-	 * </li>
-	 * 
-	 * <li>
-	 * <p>
-	 * Invoke the {@link #findClass(String)} method to find the class in this class loader URLs.
-	 * </p>
-	 * </li>
-	 * 
-	 * <li>
-	 * <p>
-	 * Invoke the {@link #loadClass(String) <tt>loadClass</tt>} method on the parent class loader. If the parent is
-	 * <tt>null</tt> the class loader built-in to the virtual machine is used, instead.
-	 * </p>
-	 * </li>
-	 * 
-	 * </ol>
-	 * 
-	 */
-	protected synchronized Class loadClass(String name, boolean resolve) throws ClassNotFoundException {
+protected synchronized Class loadClass(String name, boolean resolve) throws ClassNotFoundException {
 		if (debug) {
 			Logger.debug("loadClass", name);
 		}
@@ -222,32 +143,7 @@ public class MIDletClassLoader extends URLClassLoader {
 		}
 		return result;
 	}
-
-	/**
-	 * Finds the resource with the given name. A resource is some data (images, audio, text, etc) that can be accessed
-	 * by class code in a way that is independent of the location of the code.
-	 * 
-	 * <p>
-	 * The name of a resource is a '<tt>/</tt>'-separated path name that identifies the resource.
-	 * 
-	 * <p>
-	 * Search order is reverse to standard implementation
-	 * </p>
-	 * 
-	 * <p>
-	 * This method will first use {@link #findResource(String)} to find the resource. That failing, this method will NOT
-	 * invoke the parent class loader if delegatingToParent=false.
-	 * </p>
-	 * 
-	 * @param name
-	 *            The resource name
-	 * 
-	 * @return A <tt>URL</tt> object for reading the resource, or <tt>null</tt> if the resource could not be found or
-	 *         the invoker doesn't have adequate privileges to get the resource.
-	 * 
-	 */
-
-	public URL getResource(final String name) {
+public URL getResource(final String name) {
 		try {
 			return (URL) AccessController.doPrivileged(new PrivilegedExceptionAction() {
 				public Object run() {
@@ -265,11 +161,7 @@ public class MIDletClassLoader extends URLClassLoader {
 			return null;
 		}
 	}
-
-	/**
-	 * Allow access to resources
-	 */
-	public InputStream getResourceAsStream(String name) {
+public InputStream getResourceAsStream(String name) {
 		final URL url = getResource(name);
 		if (url == null) {
 			return null;
@@ -291,18 +183,13 @@ public class MIDletClassLoader extends URLClassLoader {
 	}
 
 	public boolean classLoadByParent(String className) {
-		/* This java standard */
-		if (className.startsWith("java.")) {
+if (className.startsWith("java.")) {
 			return true;
 		}
-		/*
-		 * This is required when Class.forName().newInstance() used to create instances with inheritance
-		 */
-		if (className.startsWith("sun.reflect.")) {
+if (className.startsWith("sun.reflect.")) {
 			return true;
 		}
-		/* No real device allow overloading this package */
-		if (className.startsWith("javax.microedition.")) {
+if (className.startsWith("javax.microedition.")) {
 			return true;
 		}
 		if (className.startsWith("com.nokia.mid.")) {
@@ -316,13 +203,7 @@ public class MIDletClassLoader extends URLClassLoader {
 		}
 		return false;
 	}
-
-	/**
-	 * Special case for classes injected to MIDlet
-	 * 
-	 * @param klass
-	 */
-	public void disableClassPreporcessing(Class klass) {
+public void disableClassPreporcessing(Class klass) {
 		disableClassPreporcessing(klass.getName());
 	}
 

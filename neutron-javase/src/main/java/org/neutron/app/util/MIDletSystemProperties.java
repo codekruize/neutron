@@ -1,29 +1,3 @@
-/**
- *  Neutron
- *  Copyright (C) 2006-2007 Bartek Teodorczyk <barteo@barteo.net>
- *  Copyright (C) 2006-2007 Vlad Skarzhevskyy
- *
- *  It is licensed under the following two licenses as alternatives:
- *    1. GNU Lesser General Public License (the "LGPL") version 2.1 or any newer version
- *    2. Apache License (the "AL") Version 2.0
- *
- *  You may not use this file except in compliance with at least one of
- *  the above two licenses.
- *
- *  You may obtain a copy of the LGPL at
- *      http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt
- *
- *  You may obtain a copy of the AL at
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the LGPL or the AL for the specific language governing permissions and
- *  limitations.
- *
- *  @version $Id$
- */
 package org.neutron.app.util;
 
 import java.security.AccessControlContext;
@@ -39,25 +13,9 @@ import java.util.Vector;
 
 import org.neutron.device.Device;
 import org.neutron.log.Logger;
-
-/**
- * @author vlads
- * 
- * This class is called by MIDlet to access System Property. Call injection is
- * made by MIDlet ClassLoaded
- * 
- */
 public class MIDletSystemProperties {
-
-	/**
-	 * This may be a configuration option. But not for applet and Web Start.
-	 */
-	public static boolean applyToJavaSystemProperties = true;
-
-	/**
-	 * Permits null values.
-	 */
-	private static final Map props = new HashMap();
+public static boolean applyToJavaSystemProperties = true;
+private static final Map props = new HashMap();
 	
 	private static final Map permissions = new HashMap();
 
@@ -68,9 +26,7 @@ public class MIDletSystemProperties {
 	private static boolean wanrOnce = true;
 
 	private static boolean initialized = false;
-
-	/* The context to be used when starting Neutron */
-	private static AccessControlContext acc;
+private static AccessControlContext acc;
 
 	private static void initOnce() {
 		// Can't use static initializer because of applyToJavaSystemProperties
@@ -84,23 +40,10 @@ public class MIDletSystemProperties {
 		setProperty("microedition.platform", "Neutron");
 		setProperty("microedition.encoding", getSystemProperty("file.encoding"));
 	}
-
-	/**
-	 * Allow Access to system properties from MIDlet
-	 */
-	public static void initContext() {
+public static void initContext() {
 		acc = AccessController.getContext();
 	}
-
-	/**
-	 * Gets the system property indicated by the specified key. The only
-	 * function called by MIDlet
-	 * 
-	 * @param key
-	 *            the name of the system property
-	 * @return
-	 */
-	public static String getProperty(String key) {
+public static String getProperty(String key) {
 		initOnce();
 		if (props.containsKey(key)) {
 			return (String) props.get(key);

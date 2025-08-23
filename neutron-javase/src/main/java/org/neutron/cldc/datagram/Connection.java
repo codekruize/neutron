@@ -1,28 +1,3 @@
-/*
- *  Neutron
- *  Copyright (C) 2006 Bartek Teodorczyk <barteo@barteo.net>
- *  Copyright (C) 2007 Ludovic Dewailly <ludovic.dewailly@dreameffect.org>
- *
- *  It is licensed under the following two licenses as alternatives:
- *    1. GNU Lesser General Public License (the "LGPL") version 2.1 or any newer version
- *    2. Apache License (the "AL") Version 2.0
- *
- *  You may not use this file except in compliance with at least one of
- *  the above two licenses.
- *
- *  You may obtain a copy of the LGPL at
- *      http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt
- *
- *  You may obtain a copy of the AL at
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the LGPL or the AL for the specific language governing permissions and
- *  limitations.
- */
-
 package org.neutron.cldc.datagram;
 
 import java.io.IOException;
@@ -34,26 +9,10 @@ import javax.microedition.io.DatagramConnection;
 import javax.microedition.io.UDPDatagramConnection;
 
 import org.neutron.microedition.io.ConnectionImplementation;
-
-/**
- * {@link ConnectionImplementation} for the datagram protocol (UDP).
- */
 public class Connection implements DatagramConnection, UDPDatagramConnection, ConnectionImplementation {
-
-	/**
-	 * The datagram protocol constant
-	 */
-	public final static String PROTOCOL = "datagram://";
-
-	/**
-	 * The encapsulated {@link DatagramSocket}
-	 */
-	private DatagramSocket socket;
-
-	/**
-	 * The connection address in the format <tt>host:port</tt>
-	 */
-	private String address;
+public final static String PROTOCOL = "datagram://";
+private DatagramSocket socket;
+private String address;
 
 	public void close() throws IOException {
 		socket.close();
@@ -104,16 +63,9 @@ public class Connection implements DatagramConnection, UDPDatagramConnection, Co
 	public String getLocalAddress() throws IOException {
 		InetAddress address = socket.getInetAddress();
 		if (address == null) {
-			/*
-			 * server mode we get the localhost from InetAddress otherwise we
-			 * get '0.0.0.0'
-			 */
-			address = InetAddress.getLocalHost();
+address = InetAddress.getLocalHost();
 		} else {
-			/*
-			 * client mode we can get the localhost from the socket here
-			 */
-			address = socket.getLocalAddress();
+address = socket.getLocalAddress();
 		}
 		return address.getHostAddress();
 	}

@@ -1,29 +1,3 @@
-/*
- *  Neutron
- *  Copyright (C) 2001 Bartek Teodorczyk <barteo@barteo.net>
- *
- *  It is licensed under the following two licenses as alternatives:
- *    1. GNU Lesser General Public License (the "LGPL") version 2.1 or any newer version
- *    2. Apache License (the "AL") Version 2.0
- *
- *  You may not use this file except in compliance with at least one of
- *  the above two licenses.
- *
- *  You may obtain a copy of the LGPL at
- *      http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt
- *
- *  You may obtain a copy of the AL at
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the LGPL or the AL for the specific language governing permissions and
- *  limitations.
- *  
- *  @version $Id$ 
- */
-
 package org.neutron.device.j2se;
 
 import java.awt.event.KeyEvent;
@@ -53,26 +27,10 @@ public class J2SEButton implements Button {
 	private Hashtable inputToChars;
 
 	private boolean modeChange;
-
-	/**
-	 * Create special functional buttons. e.g. ButtonName.DELETE and
-	 * ButtonName.BACK_SPACE if not defined in 'device.xml'
-	 * 
-	 * @param name
-	 */
-	J2SEButton(ButtonName functionalName) {
+J2SEButton(ButtonName functionalName) {
 		this(20002, functionalName.getName(), null, Integer.MIN_VALUE, null, null, null, false);
 	}
-
-	/**
-	 * @param name
-	 * @param shape
-	 * @param keyCode -
-	 *            Integer.MIN_VALUE when unspecified
-	 * @param keyName
-	 * @param chars
-	 */
-	public J2SEButton(int skinVersion, String name, Shape shape, int keyCode, String keyboardKeys,
+public J2SEButton(int skinVersion, String name, Shape shape, int keyCode, String keyboardKeys,
 			String keyboardChars, Hashtable inputToChars, boolean modeChange) {
 		this.name = name;
 		this.shape = shape;
@@ -125,11 +83,7 @@ public class J2SEButton implements Button {
 
 		this.inputToChars = inputToChars;
 	}
-
-	/**
-	 * @deprecated
-	 */
-	public int getKeyboardKey() {
+public int getKeyboardKey() {
 		if (keyboardKeys.length == 0) {
 			return 0;
 		}
@@ -147,12 +101,7 @@ public class J2SEButton implements Button {
 	public int[] getKeyboardKeyCodes() {
 		return keyboardKeys;
 	}
-
-	/**
-	 * CharCodes do not depends on InputMode. This is computer keyboard codes
-	 * when it is impossible to map to VK keys.
-	 */
-	public char[] getKeyboardCharCodes() {
+public char[] getKeyboardCharCodes() {
 		if (keyboardCharCodes == null) {
 			return new char[0];
 		}

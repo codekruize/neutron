@@ -1,29 +1,3 @@
-/**
- *  Neutron
- *  Copyright (C) 2006-2007 Bartek Teodorczyk <barteo@barteo.net>
- *  Copyright (C) 2006-2007 Vlad Skarzhevskyy
- *
- *  It is licensed under the following two licenses as alternatives:
- *    1. GNU Lesser General Public License (the "LGPL") version 2.1 or any newer version
- *    2. Apache License (the "AL") Version 2.0
- *
- *  You may not use this file except in compliance with at least one of
- *  the above two licenses.
- *
- *  You may obtain a copy of the LGPL at
- *      http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt
- *
- *  You may obtain a copy of the AL at
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the LGPL or the AL for the specific language governing permissions and
- *  limitations.
- *
- *  @version $Id$
- */
 package org.neutron.app.classloader;
 
 import java.io.File;
@@ -38,20 +12,10 @@ import java.util.StringTokenizer;
 
 import org.neutron.app.util.IOUtils;
 import org.neutron.log.Logger;
-
-/**
- * 
- * Class loader for device and other Extensions
- * 
- * @author vlads
- *
- */
 public class ExtensionsClassLoader extends URLClassLoader {
 
 	private final static boolean debug = false;
-	
-	/* The context to be used when loading classes and resources */
-    private AccessControlContext acc;
+private AccessControlContext acc;
     
 	public ExtensionsClassLoader(URL[] urls, ClassLoader parent) {
 		super(urls, parent);
@@ -77,36 +41,7 @@ public class ExtensionsClassLoader extends URLClassLoader {
 			}
 		}
 	}
-	 
-	
-	/**
-	 * Finds the resource with the given name. A resource is some data (images,
-	 * audio, text, etc) that can be accessed by class code in a way that is
-	 * independent of the location of the code.
-	 * 
-	 * <p>
-	 * The name of a resource is a '<tt>/</tt>'-separated path name that
-	 * identifies the resource.
-	 * 
-	 * <p>
-	 * Search order is reverse to standard implemenation
-	 * </p>
-	 * 
-	 * <p>
-	 * This method will first use {@link #findResource(String)} to find the
-	 * resource. That failing, this method will NOT invoke the parent class
-	 * loader.
-	 * </p>
-	 * 
-	 * @param name
-	 *            The resource name
-	 * 
-	 * @return A <tt>URL</tt> object for reading the resource, or
-	 *         <tt>null</tt> if the resource could not be found or the invoker
-	 *         doesn't have adequate privileges to get the resource.
-	 * 
-	 */
-	public URL getResource(final String name) {
+public URL getResource(final String name) {
 		try {
 			URL url = (URL) AccessController.doPrivileged(new PrivilegedExceptionAction() {
 				public Object run() {

@@ -1,27 +1,3 @@
-/*
- *  Neutron
- *  Copyright (C) 2001 Bartek Teodorczyk <barteo@barteo.net>
- *
- *  It is licensed under the following two licenses as alternatives:
- *    1. GNU Lesser General Public License (the "LGPL") version 2.1 or any newer version
- *    2. Apache License (the "AL") Version 2.0
- *
- *  You may not use this file except in compliance with at least one of
- *  the above two licenses.
- *
- *  You may obtain a copy of the LGPL at
- *      http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt
- *
- *  You may obtain a copy of the AL at
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the LGPL or the AL for the specific language governing permissions and
- *  limitations.
- */
-
 package org.neutron.device.j2se;
 
 import java.awt.FontMetrics;
@@ -65,19 +41,7 @@ public class J2SESoftButton extends J2SEButton implements SoftButton {
 	private boolean pressed;
 
 	private Font font;
-
-	/**
-	 * @param name
-	 * @param rectangle
-	 * @param keyCode -
-	 *            Integer.MIN_VALUE when unspecified
-	 * @param keyName
-	 * @param paintable
-	 * @param alignmentName
-	 * @param commands
-	 * @param font
-	 */
-	public J2SESoftButton(int skinVersion, String name, Shape shape, int keyCode, String keyboardKeys,
+public J2SESoftButton(int skinVersion, String name, Shape shape, int keyCode, String keyboardKeys,
 			Rectangle paintable, String alignmentName, Vector commands, Font font) {
 		super(skinVersion, name, shape, keyCode, keyboardKeys, null, new Hashtable(), false);
 
@@ -122,25 +86,12 @@ public class J2SESoftButton extends J2SEButton implements SoftButton {
 	public int getType() {
 		return type;
 	}
-
-	/**
-	 * Sets the command attribute of the SoftButton object
-	 * 
-	 * @param cmd
-	 *            The new command value
-	 */
-	public void setCommand(Command cmd) {
+public void setCommand(Command cmd) {
 		synchronized (this) {
 			command = cmd;
 		}
 	}
-
-	/**
-	 * Gets the command attribute of the SoftButton object
-	 * 
-	 * @return The command value
-	 */
-	public Command getCommand() {
+public Command getCommand() {
 		return command;
 	}
 

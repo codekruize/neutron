@@ -1,28 +1,3 @@
-/**
- *  Neutron
- *  Copyright (C) 2001-2003 Bartek Teodorczyk <barteo@barteo.net>
- *
- *  It is licensed under the following two licenses as alternatives:
- *    1. GNU Lesser General Public License (the "LGPL") version 2.1 or any newer version
- *    2. Apache License (the "AL") Version 2.0
- *
- *  You may not use this file except in compliance with at least one of
- *  the above two licenses.
- *
- *  You may obtain a copy of the LGPL at
- *      http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt
- *
- *  You may obtain a copy of the AL at
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the LGPL or the AL for the specific language governing permissions and
- *  limitations.
- *
- *  @version $Id$
- */
 package org.neutron.app;
 
 import java.io.File;
@@ -135,12 +110,7 @@ public class Common implements Neutron, CommonInterface {
     public Common(EmulatorContext context) {
         instance = this;
         this.emulatorContext = context;
-
-        /*
-         * Initialize secutity context for implemenations, May be there are better place
-         * for this call
-         */
-        ImplFactory.instance();
+ImplFactory.instance();
         MIDletSystemProperties.initContext();
         // TODO integrate with ImplementationInitialization
         ImplFactory.registerGCF(ImplFactory.DEFAULT, new ConnectorImpl());
@@ -233,11 +203,7 @@ public class Common implements Neutron, CommonInterface {
         return (nameString.substring(end + 1, nameString.length()).toLowerCase(Locale.ENGLISH).equals("jad") || nameString.substring(end + 1,
                 nameString.length()).toLowerCase(Locale.ENGLISH).equals("jar"));
     }
-
-    /**
-     * TODO add proper Error handling and display in this function.
-     */
-    public static void openMIDletUrlSafe(String urlString) {
+public static void openMIDletUrlSafe(String urlString) {
         try {
             getInstance().openMIDletUrl(urlString);
         } catch (IOException e) {
@@ -497,11 +463,7 @@ public class Common implements Neutron, CommonInterface {
     protected void handleStartMidletException(Throwable e) {
 
     }
-
-    /**
-     * Show message describing problem with jar if any
-     */
-    protected boolean describeJarProblem(URL jarUrl, MIDletClassLoader midletClassLoader) {
+protected boolean describeJarProblem(URL jarUrl, MIDletClassLoader midletClassLoader) {
         InputStream is = null;
         JarInputStream jis = null;
         try {

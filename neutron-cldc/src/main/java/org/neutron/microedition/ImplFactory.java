@@ -1,29 +1,3 @@
-/**
- *  Neutron
- *  Copyright (C) 2006-2007 Bartek Teodorczyk <barteo@barteo.net>
- *  Copyright (C) 2006-2007 Vlad Skarzhevskyy
- *
- *  It is licensed under the following two licenses as alternatives:
- *    1. GNU Lesser General Public License (the "LGPL") version 2.1 or any newer version
- *    2. Apache License (the "AL") Version 2.0
- *
- *  You may not use this file except in compliance with at least one of
- *  the above two licenses.
- *
- *  You may obtain a copy of the LGPL at
- *      http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt
- *
- *  You may obtain a copy of the AL at
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the LGPL or the AL for the specific language governing permissions and
- *  limitations.
- *
- *  @version $Id$
- */
 package org.neutron.microedition;
 
 import java.security.AccessControlContext;
@@ -33,13 +7,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.neutron.microedition.io.ConnectorDelegate;
-
-/**
- * This class allows to unbind implemenation with CLDC or MIDP declarations.
- * 
- * @author vlads
- * 
- */
 public class ImplFactory {
 
 	public static final String DEFAULT = "org.neutron.default";
@@ -51,15 +18,8 @@ public class ImplFactory {
 	private Map implementations = new HashMap();
 
 	private Map implementationsGCF = new HashMap();
-
-	/* The context to be used when loading classes and resources */
-	private AccessControlContext acc;
-
-	/**
-	 * Allow default initialization. In Secure environment instance() should be
-	 * called initialy from secure contex.
-	 */
-	private static class SingletonHolder {
+private AccessControlContext acc;
+private static class SingletonHolder {
 		private static ImplFactory instance = new ImplFactory();
 	}
 
@@ -82,16 +42,7 @@ public class ImplFactory {
 	public static void unregister(Class delegate, Class implementation) {
 		// TODO implement
 	}
-
-	/**
-	 * 
-	 * Register Generic Connection Framework scheme implementation.
-	 * 
-	 * @param implementation
-	 *            instance of ConnectorDelegate
-	 * @param scheme
-	 */
-	public static void registerGCF(String scheme, Object implementation) {
+public static void registerGCF(String scheme, Object implementation) {
 		if (!ConnectorDelegate.class.isAssignableFrom(implementation.getClass())) {
 			throw new IllegalArgumentException();
 		}
@@ -152,24 +103,10 @@ public class ImplFactory {
 			throw new RuntimeException("Unable create " + implClass.getName() + " implementation", e);
 		}
 	}
-
-	/**
-	 * 
-	 * @param name
-	 *            The URL for the connection.
-	 * @return UTL scheme
-	 */
-	public static String getCGFScheme(String name) {
+public static String getCGFScheme(String name) {
 		return name.substring(0, name.indexOf(':'));
 	}
-
-	/**
-	 * 
-	 * @param name
-	 *            The URL for the connection.
-	 * @return
-	 */
-	public static ConnectorDelegate getCGFImplementation(String name) {
+public static ConnectorDelegate getCGFImplementation(String name) {
 		String scheme = getCGFScheme(name);
 		ConnectorDelegate impl = (ConnectorDelegate) instance().implementationsGCF.get(scheme);
 		if (impl != null) {

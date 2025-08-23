@@ -1,23 +1,3 @@
-/**************************************************************************
- *
- * A Base64 Encoder/Decoder.
- *
- * This class is used to encode and decode data in Base64 format
- * as described in RFC 1521.
- *
- * <p>
- * Copyright 2003: Christian d'Heureuse, Inventec Informatik AG, Switzerland.<br>
- * License: This is "Open Source" software and released under the <a href="http://www.gnu.org/licenses/lgpl.html" target="_top">GNU/LGPL</a> license.
- * It is provided "as is" without warranty of any kind. Please contact the author for other licensing arrangements.<br>
- * Home page: <a href="http://www.source-code.biz" target="_top">www.source-code.biz</a><br>
- *
- * <p>
- * Version history:<br>
- * 2003-07-22 Christian d'Heureuse (chdh): Module created.<br>
- * 2005-08-11 chdh: Lincense changed from GPL to LGPL.
- *
- **************************************************************************/
-
 package org.neutron.util;
 
 public class Base64Coder {
@@ -44,24 +24,10 @@ public class Base64Coder {
 		for (int i = 0; i < 64; i++)
 			map2[map1[i]] = (byte) i;
 	}
-
-	/**
-	 * Encodes a string into Base64 format.
-	 * No blanks or line breaks are inserted.
-	 * @param s  a String to be encoded.
-	 * @return   A String with the Base64 encoded data.
-	 */
-	public static String encode(String s) {
+public static String encode(String s) {
 		return new String(encode(s.getBytes()));
 	}
-
-	/**
-	 * Encodes a byte array into Base64 format.
-	 * No blanks or line breaks are inserted.
-	 * @param in  an array containing the data bytes to be encoded.
-	 * @return    A character array with the Base64 encoded data.
-	 */
-	public static char[] encode(byte[] in) {
+public static char[] encode(byte[] in) {
 		int iLen = in.length;
 		int oDataLen = (iLen * 4 + 2) / 3; // output length without padding
 		int oLen = ((iLen + 2) / 3) * 4; // output length including padding
@@ -85,25 +51,10 @@ public class Base64Coder {
 		}
 		return out;
 	}
-
-	/**
-	 * Decodes a Base64 string.
-	 * @param s  a Base64 String to be decoded.
-	 * @return   A String containing the decoded data.
-	 * @throws   IllegalArgumentException if the input is not valid Base64 encoded data.
-	 */
-	public static String decode(String s) {
+public static String decode(String s) {
 		return new String(decode(s.toCharArray()));
 	}
-
-	/**
-	 * Decodes Base64 data.
-	 * No blanks or line breaks are allowed within the Base64 encoded data.
-	 * @param in  a character array containing the Base64 encoded data.
-	 * @return    An array containing the decoded data bytes.
-	 * @throws    IllegalArgumentException if the input is not valid Base64 encoded data.
-	 */
-	public static byte[] decode(char[] in) {
+public static byte[] decode(char[] in) {
 		int iLen = in.length;
 		if (iLen % 4 != 0)
 			throw new IllegalArgumentException(

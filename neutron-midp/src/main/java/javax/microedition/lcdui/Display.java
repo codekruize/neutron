@@ -1,33 +1,3 @@
-/**
- * Neutron
- * Copyright (C) 2001-2007 Bartek Teodorczyk <barteo@barteo.net>
- * Copyright (C) 2007 Rushabh Doshi <radoshi@cs.stanford.edu> Pelago, Inc
- * 
- *  It is licensed under the following two licenses as alternatives:
- *    1. GNU Lesser General Public License (the "LGPL") version 2.1 or any newer version
- *    2. Apache License (the "AL") Version 2.0
- *
- *  You may not use this file except in compliance with at least one of
- *  the above two licenses.
- *
- *  You may obtain a copy of the LGPL at
- *      http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt
- *
- *  You may obtain a copy of the AL at
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the LGPL or the AL for the specific language governing permissions and
- *  limitations.
- * 
- * Contributor(s): 
- *   3GLab
- *   Andres Navarro
- *   
- *  @version $Id$
- */
 package javax.microedition.lcdui;
 
 import java.util.Timer;
@@ -95,12 +65,7 @@ public class Display {
 			}
 		}
 	}
-
-	/**
-	 * @author radoshi
-	 * 
-	 */
-	private final class TickerPaintTask implements Runnable {
+private final class TickerPaintTask implements Runnable {
 
 		public void run() {
 			if (current != null) {
@@ -118,17 +83,7 @@ public class Display {
 			}
 		}
 	}
-
-	/**
-	 * Wrap a key event as a runnable so it can be thrown into the event
-	 * processing queue. Note that this may be a bit buggy, since events are
-	 * supposed to propogate to the head of the queue and not get tied behind
-	 * other repaints or serial calls in the queue.
-	 * 
-	 * @author radoshi
-	 * 
-	 */
-	private final class KeyEvent extends EventDispatcher.Event {
+private final class KeyEvent extends EventDispatcher.Event {
 
 		static final short KEY_PRESSED = 0;
 
@@ -422,15 +377,7 @@ public class Display {
 	}
 
 	private final Timer timer = new Timer();
-
-	/**
-	 * Wrap any runnable as a timertask so that when the timer gets fired, the
-	 * runnable gets run
-	 * 
-	 * @author radoshi
-	 * 
-	 */
-	private final class RunnableWrapper extends TimerTask {
+private final class RunnableWrapper extends TimerTask {
 
 		private final Runnable runnable;
 
@@ -554,13 +501,7 @@ public class Display {
 
 					// Andres Navarro
 					// TODO uncomment and test with JBenchmark2
-					/*
-					 * if (nextDisplayable instanceof GameCanvas) { // clear the
-					 * keys of the GameCanvas
-					 * MIDletBridge.getMIDletAccess().getGameCanvasKeyAccess().setActualKeyState(
-					 * (GameCanvas) nextDisplayable, 0); }
-					 */
-					// Andres Navarro
+// Andres Navarro
 					nextDisplayable.showNotify(Display.this);
 					Display.this.current = nextDisplayable;
 

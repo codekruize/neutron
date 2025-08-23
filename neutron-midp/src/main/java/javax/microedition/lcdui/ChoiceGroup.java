@@ -1,26 +1,3 @@
-/*
- *  Neutron
- *  Copyright (C) 2001 Bartek Teodorczyk <barteo@barteo.net>
- *  Copyright (C) 2005 Andres Navarro
- *
- *  This library is free software; you can redistribute it and/or
- *  modify it under the terms of the GNU Lesser General Public
- *  License as published by the Free Software Foundation; either
- *  version 2.1 of the License, or (at your option) any later version.
- *
- *  This library is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- *  Lesser General Public License for more details.
- *
- *  You should have received a copy of the GNU Lesser General Public
- *  License along with this library; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
- *
- *  Contributor(s):
- *    Shane Harper
- */
- 
 package javax.microedition.lcdui;
 
 import org.neutron.device.DeviceFactory;
@@ -241,21 +218,7 @@ public class ChoiceGroup extends Item implements Choice
 
     return items[elementNum].getImage();
   }
-
-
-  /**
-	 * Queries the state of a ChoiceGroup and returns the state of all elements
-	 * in the boolean array selectedArray_return. NOTE: this is a result
-	 * parameter. It must be at least as long as the size of the ChoiceGroup as
-	 * returned by size(). If the array is longer, the extra elements are set to
-	 * false.
-	 * 
-	 * For ChoiceGroup objects of type MULTIPLE, any number of elements may be
-	 * selected and set to true in the result array. For ChoiceGroup objects of
-	 * type EXCLUSIVE, exactly one element will be selected, unless there are
-	 * zero elements in the ChoiceGroup.
-	 */
-	public int getSelectedFlags(boolean[] selectedArray) {
+public int getSelectedFlags(boolean[] selectedArray) {
 		if (ui.getClass().getName().equals("org.neutron.android.device.ui.AndroidChoiceGroupUI")) {
 			return ((ChoiceGroupUI) ui).getSelectedFlags(selectedArray);
 		} else {
@@ -279,18 +242,7 @@ public class ChoiceGroup extends Item implements Choice
 			return selectedItemsCount;
 		}
 	}
-
-  	/**
-	 * Returns the index number of an element in the ChoiceGroup that is
-	 * selected. For ChoiceGroup objects of type EXCLUSIVE there is at most one
-	 * element selected, so this method is useful for determining the user's
-	 * choice. Returns -1 if there are no elements in the ChoiceGroup.
-	 * 
-	 * For ChoiceGroup objects of type MULTIPLE, this always returns -1 because
-	 * no single value can in general represent the state of such a ChoiceGroup.
-	 * To get the complete state of a MULTIPLE Choice, see getSelectedFlags.
-	 */
-	public int getSelectedIndex() {
+public int getSelectedIndex() {
 		if (ui.getClass().getName().equals("org.neutron.android.device.ui.AndroidChoiceGroupUI")) {
 			return ((ChoiceGroupUI) ui).getSelectedIndex();
 		} else {
@@ -534,11 +486,7 @@ public class ChoiceGroup extends Item implements Choice
 
 		return super.getHeight() + height;
 	}
-	
-	/*
-	 * Get item index from coordinates
-	 */
-	int getItemIndexAt(int x, int y)
+int getItemIndexAt(int x, int y)
 	{
 		x -= super.getHeight();
 		int testY = 0;

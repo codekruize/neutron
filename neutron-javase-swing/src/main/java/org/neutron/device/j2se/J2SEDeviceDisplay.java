@@ -1,30 +1,3 @@
-/*
- *  Neutron
- *  Copyright (C) 2002 Bartek Teodorczyk <barteo@barteo.net>
- *
- *  It is licensed under the following two licenses as alternatives:
- *    1. GNU Lesser General Public License (the "LGPL") version 2.1 or any newer version
- *    2. Apache License (the "AL") Version 2.0
- *
- *  You may not use this file except in compliance with at least one of
- *  the above two licenses.
- *
- *  You may obtain a copy of the LGPL at
- *      http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt
- *
- *  You may obtain a copy of the AL at
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the LGPL or the AL for the specific language governing permissions and
- *  limitations.
- *
- *  Contributor(s):
- *    Andres Navarro
- */
-
 package org.neutron.device.j2se;
 
 import java.awt.Font;
@@ -463,85 +436,31 @@ public class J2SEDeviceDisplay implements DeviceDisplayImpl
 	public void setNumAlphaLevels(int i) {
 		numAlphaLevels = i;
 	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.barteo.emulator.device.impl.DeviceDisplayImpl#setNumColors(int)
-	 */
-	public void setNumColors(int i) {
+public void setNumColors(int i) {
 		numColors = i;
 	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.barteo.emulator.device.impl.DeviceDisplayImpl#setIsColor(boolean)
-	 */
-	public void setIsColor(boolean b) {
+public void setIsColor(boolean b) {
 		isColor = b;
 	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.barteo.emulator.device.impl.DeviceDisplayImpl#setBackgroundColor(java.awt.Color)
-	 */
-	public void setBackgroundColor(Color color) {
+public void setBackgroundColor(Color color) {
 		backgroundColor = new java.awt.Color(color.getRGB());
 	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.barteo.emulator.device.impl.DeviceDisplayImpl#setForegroundColor(java.awt.Color)
-	 */
-	public void setForegroundColor(Color color) {
+public void setForegroundColor(Color color) {
 		foregroundColor = new java.awt.Color(color.getRGB());
 	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.barteo.emulator.device.impl.DeviceDisplayImpl#setDisplayRectangle(java.awt.Rectangle)
-	 */
-	public void setDisplayRectangle(Rectangle rectangle) {
+public void setDisplayRectangle(Rectangle rectangle) {
 		displayRectangle = rectangle;
 	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.barteo.emulator.device.impl.DeviceDisplayImpl#setDisplayPaintable(java.awt.Rectangle)
-	 */
-	public void setDisplayPaintable(Rectangle rectangle) {
+public void setDisplayPaintable(Rectangle rectangle) {
 		displayPaintable = rectangle;
 	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.barteo.emulator.device.impl.DeviceDisplayImpl#setMode123Image(com.barteo.emulator.device.impl.PositionedImage)
-	 */
-	public void setMode123Image(PositionedImage object) {
+public void setMode123Image(PositionedImage object) {
 		mode123Image = object;
 	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.barteo.emulator.device.impl.DeviceDisplayImpl#setModeAbcLowerImage(com.barteo.emulator.device.impl.PositionedImage)
-	 */
-	public void setModeAbcLowerImage(PositionedImage object) {
+public void setModeAbcLowerImage(PositionedImage object) {
 		modeAbcLowerImage = object;
 	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.barteo.emulator.device.impl.DeviceDisplayImpl#setModeAbcUpperImage(com.barteo.emulator.device.impl.PositionedImage)
-	 */
-	public void setModeAbcUpperImage(PositionedImage object) {
+public void setModeAbcUpperImage(PositionedImage object) {
 		modeAbcUpperImage = object;
 	}
 

@@ -1,26 +1,3 @@
-/*
- * Neutron 
- * Copyright (C) 2001 Bartek Teodorczyk <barteo@barteo.net>
- *  Copyright (C) 2005 Andres Navarro
- * 
- * This library is free software; you can redistribute it and/or modify it
- * under the terms of the GNU Lesser General Public License as published by the
- * Free Software Foundation; either version 2.1 of the License, or (at your
- * option) any later version.
- * 
- * This library is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
- * FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License
- * for more details.
- * 
- * You should have received a copy of the GNU Lesser General Public License
- * along with this library; if not, write to the Free Software Foundation,
- * Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- * 
- * Contributor(s): 
- *   3GLab
- */
-
 package javax.microedition.lcdui;
 
 import java.util.Vector;
@@ -486,16 +463,7 @@ public class Form extends Screen
 
 		return height;
 	}
-
-	/**
-	 * Verify that the item is non null and is not owned by this form or anyone
-	 * else. If all is ok set the owner to this Form
-	 * 
-	 * @param item the item to be verified
-	 * @throws IllegalStateException
-	 * @throws NullPointerException
-	 */
-	private void verifyItem(Item item) 
+private void verifyItem(Item item) 
 	{
 		// Check that we are being passed valid items
 		if (item == null) {
@@ -507,15 +475,7 @@ public class Form extends Screen
 		// All is ok make ourselves the owner
 		item.setOwner(this);
 	}
-
-	/**
-	 * Verify that the index passed in is valid for this form. ie within the
-	 * range 0..size-1
-	 * 
-	 * @param itemNum the number of the item
-	 * @throws IndexOutOfBoundsException
-	 */
-	private void verifyItemNum(int itemNum) 
+private void verifyItemNum(int itemNum) 
 	{
 		if (itemNum < 0 || itemNum >= numOfItems) {
 			throw new IndexOutOfBoundsException("item number is outside range of Form");
