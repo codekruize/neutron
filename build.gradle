@@ -1,6 +1,5 @@
 plugins {
     id 'java'
-    id 'application'
 }
 
 allprojects {
@@ -23,10 +22,6 @@ subprojects {
     targetCompatibility = 1.8
 }
 
-// Main application configuration
-application {
-    mainClass = 'org.neutron.app.Main'
-}
 
 // Dependencies for the main application
 dependencies {
@@ -93,18 +88,4 @@ clean {
     delete file('build/resources')
 }
 
-// Task to run the application
-task runNeutron(type: JavaExec) {
-    group = 'application'
-    description = 'Run the Neutron Java ME emulator'
-    mainClass = 'org.neutron.app.Main'
-    classpath = project(':neutron-javase-swing').sourceSets.main.runtimeClasspath
-    workingDir = projectDir
-    dependsOn ':neutron-javase-swing:build'
-}
 
-// Alternative run task that uses the application plugin
-run {
-    classpath = project(':neutron-javase-swing').sourceSets.main.runtimeClasspath
-    dependsOn ':neutron-javase-swing:build'
-}
